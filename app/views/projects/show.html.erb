@@ -1,0 +1,14 @@
+<h1><%= @project.title %></h1>
+<%= image_tag @project.image.url(:medium) %>
+<h3>GitHub URL:</h3>
+<a href="http://www.github.com/<%=@project.github_url%>"><%= @project.github_url %></a>
+
+<h3>Project Description:</h3>
+<%= @project.description %>
+
+<h3>Skills</h3>
+<ul>
+<% @project.skills.each do |skill| %>
+    <li><%= skill.name %></li>
+<% end %>
+</ul>
