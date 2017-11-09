@@ -1,7 +1,11 @@
 <h1><%= @portfolio.name %></h1>
 
 <% @projects.each do |project| %>
-    <%= project.title %>
+    <a href="/portfolios/<%= @portfolio.id %>/projects/<%= project.id %>">
+        <%= image_tag project.image.url(:medium) %><br>
+        <%= project.title %>
+    </a>
+    <br><br>
 <% end %>
 
 <%= button_to "Edit this Portfolio", edit_user_portfolio_path, method: :get %>
