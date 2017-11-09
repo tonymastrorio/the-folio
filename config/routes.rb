@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :portfolios
   end
+
+  resources :portfolios do
+    resources :projects
+  end
 end

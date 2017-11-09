@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
     end
 
     def new
+        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
         @project = Project.new
         @project.skills.build
     end

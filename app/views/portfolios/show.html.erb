@@ -1,5 +1,9 @@
-<h1>Projects in this portfolio</h1>
+<h1><%= @portfolio.name %></h1>
 
 <% @projects.each do |project| %>
     <%= project.title %>
 <% end %>
+
+<%= button_to "Edit this Portfolio", edit_user_portfolio_path, method: :get %>
+<br><br>
+<%= button_to "Add a Project to this Portfolio", new_portfolio_project_path(@portfolio), method: :get %>

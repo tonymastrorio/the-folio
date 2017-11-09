@@ -15,7 +15,6 @@ class PortfoliosController < ApplicationController
 
     def show
         @portfolio = Portfolio.find(params[:id])
-        binding.pry
         @projects = Portfolio.find(params[:id]).projects
     end
 
@@ -27,6 +26,16 @@ class PortfoliosController < ApplicationController
         end
     end
 
+    def edit
+        require_permission
+        @portfolio = Portfolio.find(params[:id])
+    end
+
+    def update
+        require_permission
+        @portfolio = Portfolio.update(portfolio_params)
+        redirect_to user_portfolios_path(@portfolio)
+    end
 
     private
 

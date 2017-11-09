@@ -2,7 +2,7 @@
 
 <%= form_for(@project) do |f| %>
 
-    <%= f.collection_select :portfolio_id, current_user.portfolios.all, :id, :name %>
+    <%= f.collection_select :portfolio_id, current_user.portfolios.all, :id, :name, {:selected => @portfolio.id } %>
 
     <%= f.label :title %>
     <%= f.text_field :title %><br><br>
