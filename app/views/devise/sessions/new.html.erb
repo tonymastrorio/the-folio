@@ -1,4 +1,7 @@
 <h2>Log in</h2>
+<% if flash[:alert] %>
+  <h4 class="xyz-style"><%= flash[:alert] %></h4>
+<% end %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
