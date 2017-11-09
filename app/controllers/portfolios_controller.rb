@@ -13,6 +13,18 @@ class PortfoliosController < ApplicationController
         end
     end
 
+    def show
+
+    end
+
+    def index
+        if params[:user_id]
+            @portfolios = User.find(params[:user_id]).portfolios
+        else
+            @portfolios = Portfolio.all
+        end
+    end
+
 
     private
 

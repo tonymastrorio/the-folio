@@ -1,0 +1,5 @@
+<h1>All your Portfolios</h1>
+
+<% @portfolios.each do |portfolio| %>
+    <h3><a href="/users/<%= current_user.id %>/portfolios/<%= portfolio.id %>"><%= portfolio.name %></a> - <%= portfolio.category.name %></h3>
+<% end %>

@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :projects
   resource :portfolios
-  root 'projects#index'
+  root 'portfolios#index'
+  resources :users do
+    resources :portfolios, only: [:index]
+  end
 end
