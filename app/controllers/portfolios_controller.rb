@@ -7,7 +7,7 @@ class PortfoliosController < ApplicationController
         @portfolio = Portfolio.new(portfolio_params)
         @portfolio.user = current_user
         if @portfolio.save
-            redirect_to new_project_path
+            redirect_to new_portfolio_project_path(@portfolio)
         else
             render :new
         end
@@ -33,8 +33,17 @@ class PortfoliosController < ApplicationController
 
     def update
         require_permission
-        @portfolio = Portfolio.update(portfolio_params)
-        redirect_to user_portfolios_path(@portfolio)
+        @portfolio = Portfolio.find_by(id: params[:id])
+        @portfolio.update(portfolio_params)
+
+        redirect_to user_portfolio_path(current_user, @portfolio)
+    end
+
+    def destroy
+        require_permission
+        @portfolio = Portfolio.find_by(params[:id])
+        @portfolio.destroy
+        redirect_to user_portfolios_path
     end
 
     private

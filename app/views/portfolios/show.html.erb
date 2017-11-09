@@ -10,4 +10,7 @@
 
 <%= button_to "Edit this Portfolio", edit_user_portfolio_path, method: :get %>
 <br><br>
+
+<%= button_to "Delete this Portfolio", { :controller => "portfolios", :action => "destroy", id: params[:id] }, :method => "delete", data: { :confirm => "Are you sure?" } %>
+<br><br>
 <%= button_to "Add a Project to this Portfolio", new_portfolio_project_path(@portfolio), method: :get %>

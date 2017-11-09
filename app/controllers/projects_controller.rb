@@ -10,8 +10,9 @@ class ProjectsController < ApplicationController
 
     def create
         @project = Project.new(project_params)
+        @portfolio = Portfolio.find_by(id: params[:project][:portfolio_id])
         if @project.save
-            redirect_to project_path(@project)
+            redirect_to portfolio_project_path(@portfolio, @project)
         else
             render :new
         end
@@ -31,9 +32,10 @@ class ProjectsController < ApplicationController
     def update
         require_permission_projects_controller
         @portfolio = Portfolio.find_by(id: params[:portfolio_id])
-        @project = Project.update(project_params)
+        @project = Project.find_by(id: params[:id])
+        @project.update(project_params)
 
-        redirect_to portfolio_project_path(@project)
+        redirect_to portfolio_project_path(@portfolio, @project)
     end
 
     private
