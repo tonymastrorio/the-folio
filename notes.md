@@ -4,4 +4,6 @@ Next steps:
 
 2. Add project edit page - DONE
 
-3. Add delete portfolio button/controller
+3. Add delete portfolio button/controller - DONE
+
+4. Add delete project button/controller

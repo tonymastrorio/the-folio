@@ -41,7 +41,7 @@ class PortfoliosController < ApplicationController
 
     def destroy
         require_permission
-        @portfolio = Portfolio.find_by(params[:id])
+        @portfolio = Portfolio.find_by(id: params[:id])
         @portfolio.destroy
         redirect_to user_portfolios_path
     end

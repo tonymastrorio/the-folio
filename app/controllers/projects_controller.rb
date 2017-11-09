@@ -38,6 +38,14 @@ class ProjectsController < ApplicationController
         redirect_to portfolio_project_path(@portfolio, @project)
     end
 
+    def destroy
+        require_permission_projects_controller
+        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
+        @project = Project.find_by(id: params[:id])
+        @project.destroy
+        redirect_to user_portfolio_path(current_user, @portfolio)
+    end
+
     private
 
     def project_params
