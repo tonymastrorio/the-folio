@@ -14,7 +14,9 @@ class PortfoliosController < ApplicationController
     end
 
     def show
-
+        @portfolio = Portfolio.find(params[:id])
+        binding.pry
+        @projects = Portfolio.find(params[:id]).projects
     end
 
     def index

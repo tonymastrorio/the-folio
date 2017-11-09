@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resource :portfolios
   root 'portfolios#index'
   resources :users do
-    resources :portfolios, only: [:index]
+    resources :portfolios
   end
 end
