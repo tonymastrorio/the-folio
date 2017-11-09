@@ -1,0 +1,26 @@
+<h1>Project Edit Page</h1>
+
+<%= form_for @project, url: portfolio_project_path(@portfolio), html: { method: :put } do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %><br><br>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %><br><br>
+
+    <%= f.label :github_url %>
+    <%= f.text_field :github_url %><br><br>
+
+    <%= f.file_field :image %><br><br>
+
+    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %><br><br>
+
+    <%= f.fields_for :skills do |skill_builder| %>
+        <%= skill_builder.label :name, "Add a new skill" %>
+        <%= skill_builder.text_field :name %>
+    <% end %>
+
+    <br><br>
+
+    <%= f.submit %>
+<% end %>
