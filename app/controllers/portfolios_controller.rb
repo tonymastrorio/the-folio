@@ -43,7 +43,7 @@ class PortfoliosController < ApplicationController
         require_permission
         @portfolio = Portfolio.find_by(id: params[:id])
         @portfolio.destroy
-        redirect_to user_portfolios_path
+        redirect_to user_portfolios_path(current_user)
     end
 
     private
