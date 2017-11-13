@@ -8,6 +8,10 @@ class Project < ApplicationRecord
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
     validates_presence_of :title, :description
 
+    def self.by_skill(skill_id)
+        Project.joins(:skills).where(skills: {id: skill_id})
+    end
+
     def skills_attributes=(skills_attributes)
         skills_attributes.values.each do |skill_attributes|
             #Do not create a category if it does not have a name

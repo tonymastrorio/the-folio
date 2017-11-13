@@ -1,5 +1,13 @@
 class ProjectsController < ApplicationController
+    skip_before_action :authenticate_user!, only: [:index, :show]
+
     def index
+        @skills = Skill.all
+        if !params[:skill].blank?
+            @projects = Project.by_skill(params[:skill])
+        else
+            @projects = Project.all
+        end
     end
 
     def new

@@ -15,8 +15,12 @@
 
 <br><br>
 
+<% if current_user == @project.portfolio.user %>
+
 <%= button_to "Edit this Project", edit_portfolio_project_path(@portfolio, @project), method: :get %>
 
 <br><br>
 
 <%= button_to "Delete this Project", { :controller => "projects", :action => "destroy", id: params[:id] }, :method => "delete", data: { :confirm => "Are you sure?" } %>
+
+<% end %>

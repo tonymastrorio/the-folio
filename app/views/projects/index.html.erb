@@ -1,2 +1,24 @@
-This is the projects index page...
+<h1>All the Projects</h1><br>
 
+<div>
+<h3>Filter Projects by Skill</h3>
+<%= form_tag("/projects", method: "get") do %>
+    <%= select_tag "skill", options_from_collection_for_select(@skills, "id", "name", params[:skill]), :prompt => "All skills" %>
+    <%= submit_tag "Filter" %>
+
+<% end %>
+</div>
+
+
+<div class="container center-container">
+    <div class="row">
+        <% @projects.each do |project| %>
+            <div class="col-sm-4">
+                <a href="/portfolios/<%= project.portfolio_id %>/projects/<%= project.id %>">
+                <%= image_tag project.image.url(:medium), :class => "img-rounded img-responsive" %>
+                <div class="caption center-block"><%= project.title %></div>
+                </a>
+            </div>
+        <% end %>
+    </div>
+</div>
