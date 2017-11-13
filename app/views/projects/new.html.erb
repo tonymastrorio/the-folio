@@ -1,4 +1,13 @@
 <h1>Create a new project</h1>
+<% if !@project.errors.messages.empty? %>
+    <h3>Errors:</h3>
+    <ul>
+        <% @project.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+    <br>
+<% end %>
 
 <%= form_for(@project) do |f| %>
 
@@ -15,7 +24,10 @@
 
     <%= f.file_field :image %><br><br>
 
-    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %><br><br>
+    <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %>
+
+
+    <br><br>
 
     <%= f.fields_for :skills do |skill_builder| %>
         <%= skill_builder.label :name, "Add a new skill" %>

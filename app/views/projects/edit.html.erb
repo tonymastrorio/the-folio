@@ -15,7 +15,8 @@
 
     <%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name %><br><br>
 
-    <%= f.fields_for :skills do |skill_builder| %>
+    <!-- Edit fields_for to only create one new skill box on edit form -->
+    <%= f.fields_for :skills, @project.skills.build do |skill_builder| %>
         <%= skill_builder.label :name, "Add a new skill" %>
         <%= skill_builder.text_field :name %>
     <% end %>
