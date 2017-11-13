@@ -14,7 +14,7 @@ class PortfoliosController < ApplicationController
     end
 
     def show
-        @portfolio = Portfolio.find(params[:id])
+        find_portfolio
         @projects = Portfolio.find(params[:id]).projects
     end
 
@@ -28,12 +28,12 @@ class PortfoliosController < ApplicationController
 
     def edit
         require_permission
-        @portfolio = Portfolio.find(params[:id])
+        find_portfolio
     end
 
     def update
         require_permission
-        @portfolio = Portfolio.find_by(id: params[:id])
+        find_portfolio
         @portfolio.update(portfolio_params)
 
         redirect_to user_portfolio_path(current_user, @portfolio)
@@ -41,7 +41,7 @@ class PortfoliosController < ApplicationController
 
     def destroy
         require_permission
-        @portfolio = Portfolio.find_by(id: params[:id])
+        find_portfolio
         @portfolio.destroy
         redirect_to user_portfolios_path(current_user)
     end
@@ -50,5 +50,9 @@ class PortfoliosController < ApplicationController
 
     def portfolio_params
         params.require(:portfolio).permit(:name, :category_id)
+    end
+
+    def find_portfolio
+        @portfolio = Portfolio.find_by(id: params[:id])
     end
 end

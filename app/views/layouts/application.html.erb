@@ -19,7 +19,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<%= root_path %>">TheFol.io</a>
+          <a class="navbar-brand" 
+          <% if !current_user %>
+            href="<%= root_path %>
+          <% else %>
+            href="<%= user_portfolios_path(current_user) %>
+          <% end %>
+          ">TheFol.io</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

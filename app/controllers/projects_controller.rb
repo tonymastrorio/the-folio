@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     end
 
     def new
-        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
+        find_portfolio
         @project = Project.new
         @project.skills.build
     end
@@ -27,20 +27,20 @@ class ProjectsController < ApplicationController
     end
 
     def show
-        @project = Project.find_by(id: params[:id])
-        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
+        find_project
+        find_portfolio
     end
 
     def edit
         require_permission_projects_controller
-        @project = Project.find_by(id: params[:id])
-        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
+        find_project
+        find_portfolio
     end
 
     def update
         require_permission_projects_controller
-        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
-        @project = Project.find_by(id: params[:id])
+        find_portfolio
+        find_project
         @project.update(project_params)
 
         redirect_to portfolio_project_path(@portfolio, @project)
@@ -48,8 +48,8 @@ class ProjectsController < ApplicationController
 
     def destroy
         require_permission_projects_controller
-        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
-        @project = Project.find_by(id: params[:id])
+        find_portfolio
+        find_project
         @project.destroy
         redirect_to user_portfolio_path(current_user, @portfolio)
     end
@@ -64,5 +64,13 @@ class ProjectsController < ApplicationController
         if current_user != Portfolio.find(params[:portfolio_id]).user
             redirect_to root_path
         end
+    end
+
+    def find_portfolio
+        @portfolio = Portfolio.find_by(id: params[:portfolio_id])
+    end
+
+    def find_project
+        @project = Project.find_by(id: params[:id])
     end
 end
