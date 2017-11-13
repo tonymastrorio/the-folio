@@ -1,12 +1,18 @@
 <h1><%= @portfolio.name %></h1>
 
-<% @projects.each do |project| %>
-    <a href="/portfolios/<%= @portfolio.id %>/projects/<%= project.id %>">
-        <%= image_tag project.image.url(:medium) %><br>
-        <%= project.title %>
-    </a>
-    <br><br>
-<% end %>
+<div class="container center-container">
+    <div class="row">
+        <% @projects.each do |project| %>
+            <div class="col-sm-4">
+                <a href="/portfolios/<%= @portfolio.id %>/projects/<%= project.id %>">
+                    <%= image_tag project.image.url(:medium), :class => "img-rounded img-responsive" %><br>
+                    <div class="caption center-block"><%= project.title %></div>
+                </a>
+            </div>
+        <% end %>
+    </div>
+</div>
+
 
 <%= button_to "Edit this Portfolio", edit_user_portfolio_path, method: :get %>
 <br><br>
