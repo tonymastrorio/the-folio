@@ -1,6 +1,6 @@
 <h2>What type of portfolio would you like to create?</h2>
 
-<% if @portfolio.errors %>
+<% if !@portfolio.errors.messages.empty? %>
     <h3>Errors:</h3>
     <ul>
         <% @portfolio.errors.full_messages.each do |message| %>
