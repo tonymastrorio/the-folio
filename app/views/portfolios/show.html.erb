@@ -1,22 +1,28 @@
-<h1><%= @portfolio.name %></h1>
+<div id="portfolio-name-row" class ="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1><%= @portfolio.name %></h1>
+        </div>
+
+        <div class="col-md-6">
+            <%= button_to "Edit this Portfolio", edit_user_portfolio_path, method: :get, :class => "btn btn-medium btn-primary float-btn" %>
+
+            <%= button_to "Delete this Portfolio", { :controller => "portfolios", :action => "destroy", id: params[:id] }, :method => "delete", :class => "btn btn-medium btn-danger float-btn", data: { :confirm => "Are you sure?" } %>
+
+            <%= button_to "Add a Project to this Portfolio", new_portfolio_project_path(@portfolio), method: :get, :class => "btn btn-medium btn-success" %>
+        </div>
+    </div>
+</div>
 
 <div class="container center-container">
     <div class="row">
         <% @projects.each do |project| %>
             <div class="col-sm-4">
                 <a href="/portfolios/<%= @portfolio.id %>/projects/<%= project.id %>">
-                    <%= image_tag project.image.url(:medium), :class => "img-rounded img-responsive" %><br>
+                    <%= image_tag project.image.url(:medium), :class => "img-rounded img-responsive img-med" %><br>
                     <div class="caption center-block"><%= project.title %></div>
                 </a>
             </div>
         <% end %>
     </div>
 </div>
-
-
-<%= button_to "Edit this Portfolio", edit_user_portfolio_path, method: :get %>
-<br><br>
-
-<%= button_to "Delete this Portfolio", { :controller => "portfolios", :action => "destroy", id: params[:id] }, :method => "delete", data: { :confirm => "Are you sure?" } %>
-<br><br>
-<%= button_to "Add a Project to this Portfolio", new_portfolio_project_path(@portfolio), method: :get %>

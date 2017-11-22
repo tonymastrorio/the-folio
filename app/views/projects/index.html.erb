@@ -1,12 +1,17 @@
-<h1>View the Projects</h1><br>
+<div id="recent-projects-row" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Recent Projects</h1>
+        </div>
 
-<div>
-<h3>Filter Projects by Skill</h3>
-<%= form_tag("/projects", method: "get") do %>
-    <%= select_tag "skill", options_from_collection_for_select(@skills, "id", "name", params[:skill]), :prompt => "All skills" %>
-    <%= submit_tag "Filter" %>
+        <div id="skill-filter" class="col-md-6">
+        <%= form_tag("/projects", method: "get") do %>
+            <%= select_tag "skill", options_from_collection_for_select(@skills, "id", "name", params[:skill]), :prompt => "All skills", :class => "btn btn-secondary dropdown-toggle" %>
+            <%= submit_tag "Filter", :class => "btn btn-primary" %>
 
-<% end %>
+        <% end %>
+        </div>
+    </div>
 </div>
 
 
@@ -15,7 +20,7 @@
         <% @projects.each do |project| %>
             <div class="col-sm-4">
                 <a href="/portfolios/<%= project.portfolio_id %>/projects/<%= project.id %>">
-                <%= image_tag project.image.url(:medium), :class => "img-rounded img-responsive" %>
+                <%= image_tag project.image.url(:medium), :class => "img-rounded img-responsive img-med" %>
                 <div class="caption center-block"><%= project.title %></div>
                 </a>
             </div>

@@ -1,11 +1,15 @@
-<h1>Portfolios</h1>
+<div class="container">
+    
+    <h1>Portfolios</h1>
 
-<% if @portfolios.empty? %>
-    <h1>Create your first portfolio!</h1>
-    <%= button_to "Create a New Portfolio", new_user_portfolio_path(current_user), method: :get %>
-<% else %>
-    <% @portfolios.each do |portfolio| %>
-        <h3><a href="/users/<%= current_user.id %>/portfolios/<%= portfolio.id %>"><%= portfolio.name %></a> - <%= portfolio.category.name %></h3>
+    <% if @portfolios.empty? %>
+        <h1>Create your first portfolio!</h1>
+        <%= button_to "Create a New Portfolio", new_user_portfolio_path(current_user), method: :get %>
+    <% else %>
+        <% @portfolios.each do |portfolio| %>
+            <h3><a href="/users/<%= current_user.id %>/portfolios/<%= portfolio.id %>"><%= portfolio.name %></a> - <%= portfolio.category.name %></h3>
+        <% end %>
+        <%= button_to "Create a New Portfolio", new_user_portfolio_path(current_user), method: :get %>
     <% end %>
-    <%= button_to "Create a New Portfolio", new_user_portfolio_path(current_user), method: :get %>
-<% end %>
+
+</div>
