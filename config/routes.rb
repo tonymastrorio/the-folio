@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :portfolios do
     resources :projects
   end
+
+
 end
