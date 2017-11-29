@@ -15,8 +15,11 @@ You can:
 ## Installation
 
 $ git clone https://github.com/tonymastrorio/the-folio.git
+<br>
 $ cd the-folio
+<br>
 $ bundle install
+<br>
 $ rake db:migrate
 
 ## Contributing
